@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+
+var fileName='';
+var fileContent='';
+    function xx(){
+    	$.get("file.txt", function(data){
+    	
+    	var numF;
+    	var ff =data.split(/\n\s*\n\s*\n/);
+    	var ss = ff[0].split(/\n/);
+    	numF = Number(ss[0]);
+    	//alert(numF);
+    	var flag=0,j=0;
+  
+        //if(flag===0){
+    	
+
+    			 var fn= ss[1].split("."); 
+	        	fileName = fn[0];
+	        	//alert(fileName);
+	        	var fileextenion = fn[1];
+	        	//alert(fileextenion);
+	        	for (var l=2;l<ss.length;l++)
+	        		{fileContent +=ss[l];
+	        	//flag=1;
+	            }
+	        	//alert(fileContent);
+	        	j=1;
+    		
+    		while(j<numF){
+    			//var fn= ss[j].split("."); 
+	        	//fileName += fn[0];
+	        	//alert(fileName);
+	        	
+	        
+
+
+	         ss = ff[j].split(/\n/);
+	         //alert(ff[j]);
+	         fileName+=ss[0].split(".")[0];
+
+
+	       
+	        	for(var x=1; x<ss.length;x++){
+	        		fileContent=fileContent+ss[x];
+	        	}
+
+	     
+    				j++;
+    		}
+
+
+//fileContent = fileContent.replace('$','*');
+fileContent =fileContent.replace(/\$/g, "");
+fileContent =fileContent.replace(/(?:(?:\r\n|\r|\n)\s*){2}/gm, "");
+//fileContent =fileContent.replace(/\n\s*\n/, '');
+/*var temp='';
+ff =fileContent.split('\n');
+alert(ff.length);
+ for(var k=0;k<ff.length;k++){
+temp+=ff[k]
+ }
+fileContent = temp;*/
+
+    		fileName =fileName+"."+fileextenion;
+    		//alert("\n"+fileContent+" filename="+fileName);
+    		   var x =fileName;
+   var textToWrite =fileContent;
+
+    var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    var fileNameToSaveAs =x;
+
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+
+
+
+
+
+
+
+
+    		//alert(ff[j]);
+    		
+    	
+    	//alert(fileContent);
+    	});
+    };
+/*    
+	function abc(){
+		$.get("file.txt", function(data){
+    		var lines = data.split('\n');
+    		var n = lines.length;
+    		var numF = Number(lines[0]);
+//alert(lines[1]);
+   	var fn= "abc.txt".split("."); 
+        	fileName = fn[0];
+        	var fileextenion = fn[1];
+        	alert(fileextenion);
+        	fileContent = 
+
+
+
+
+
+    	
+            for(var i=1;i<n;i++){
+            	lines[i]
+
+
+            }
+
+        });
+	}*/
+
+    $("button").click(function(){
+
+        
+ xx();
+
+});
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>here is the content of your file</h2></div>
+
+<button>click</button>
+
+</body>
+</html>

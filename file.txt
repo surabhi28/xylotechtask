@@ -1,0 +1,26 @@
+4
+fileone.txt
+contant of file one
+hey$
+how 
+
+
+
+filetwo.txt
+content of file 
+
+hello world
+
+
+
+
+filethree.txt 
+conten$t of file  three
+
+okay
+
+
+
+filefour.txt 
+conte4nt of file  four
+
